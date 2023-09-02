@@ -1,0 +1,11 @@
+add(X,Y,Result):-
+    Result is X + Y.
+sub(X,Y,Result):-
+    Result is X - Y.
+mul(X,Y,Result):-
+    Result is X*Y.
+div(X,Y,Result):-
+    Result is X/Y.
+
+sum(x,y,result):-
+    result is x + y.

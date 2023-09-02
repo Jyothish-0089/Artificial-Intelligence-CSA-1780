@@ -1,0 +1,23 @@
+% Facts about planets
+planet(mercury, 4879, 57.9).
+planet(venus, 12104, 108.2).
+planet(earth, 12742, 149.6).
+planet(mars, 6779, 227.9).
+planet(jupiter, 139822, 778.3).
+planet(saturn, 116464, 1427.0).
+planet(uranus, 50724, 2871.0).
+planet(neptune, 49244, 4497.1).
+
+% Rule to find the gravitational force on a planet
+gravitational_force(Planet, Force) :-
+    planet(Planet, Radius, Distance),
+    G_constant is 6.67430e-11, % Gravitational constant (m^3/kg/s^2)
+    Mass is 5.972e24,          % Mass of Earth (kg)
+    Force is (G_constant * Mass) / (Radius * 1000) ^ 2, % Convert to meters
+    format("The gravitational force on ~w is ~w Newtons.~n", [Planet, Force]).
+
+% Rule to check if a planet is a gas giant
+is_gas_giant(Planet) :-
+    planet(Planet, _, _),
+    (Planet = jupiter; Planet = saturn; Planet = uranus; Planet = neptune),
+    write(Planet), write(' is a gas giant.').

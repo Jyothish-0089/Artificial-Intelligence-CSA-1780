@@ -1,0 +1,32 @@
+% Initial state of the room
+location(monkey, room).
+location(box, room).
+location(banana, ceiling).
+
+% Actions the monkey can take
+move(monkey, room, room).
+move(monkey, room, box).
+move(monkey, box, room).
+move(monkey, box, box).
+climb(monkey, box).
+
+% Goal state: The monkey has the banana
+goal_state(monkey, ceiling).
+
+% Recursive function to solve the problem
+solve(State, []) :- goal_state(State, _).
+solve(State, [Actions | Actions]) :-
+    move(State, NewState),
+    solve(NewState, Actions).
+solve(State, [Actions | Actions]) :-
+    climb(State, NewState),
+    solve(NewState, Actions).
+
+% Entry point for solving the problem
+solve_problem(Actions) :-
+    solve(location(monkey, room), Actions).
+
+% Example usage:
+% To find the sequence of moves to reach the banana:
+% ?- solve_problem(Actions).
+% Actions will contain the list of actions.
